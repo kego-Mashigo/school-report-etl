@@ -1,0 +1,98 @@
+USE kathu_college_dwh;
+GO
+
+-- Create and load the Grade 10 silver table.
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.tables
+    WHERE name = N'grade_10_students_marks'
+      AND schema_id = SCHEMA_ID(N'silver')
+)
+BEGIN
+    SELECT
+        student_id,
+        student_name,
+        grade,
+        mathematics_mark,
+        physical_science_mark,
+        life_sciences_mark,
+        english_home_language_mark,
+        life_orientation_mark,
+        information_technology_mark,
+        agricultural_science_mark,
+        total_mark,
+        average_mark
+    INTO silver.grade_10_students_marks
+    FROM [kathu_college_stg].[bronze].[grade_10_students_marks]
+    WHERE grade IN ('10A', '10B');
+END;
+GO
+
+-- Create and load the Grade 11 silver table.
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.tables
+    WHERE name = N'grade_11_students_marks'
+      AND schema_id = SCHEMA_ID(N'silver')
+)
+BEGIN
+    SELECT
+        student_id,
+        student_name,
+        grade,
+        mathematics_mark,
+        physical_science_mark,
+        life_sciences_mark,
+        english_home_language_mark,
+        life_orientation_mark,
+        information_technology_mark,
+        agricultural_science_mark,
+        total_mark,
+        average_mark
+    INTO silver.grade_11_students_marks
+    FROM [kathu_college_stg].[bronze].[grade_11_students_marks]
+    WHERE grade IN ('11A', '11B');
+END;
+GO
+
+-- Create and load the Grade 12 silver table.
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.tables
+    WHERE name = N'grade_12_students_marks'
+      AND schema_id = SCHEMA_ID(N'silver')
+)
+BEGIN
+    SELECT
+        student_id,
+        student_name,
+        grade,
+        mathematics_mark,
+        physical_science_mark,
+        life_sciences_mark,
+        english_home_language_mark,
+        life_orientation_mark,
+        information_technology_mark,
+        agricultural_science_mark,
+        total_mark,
+        average_mark
+    INTO silver.grade_12_students_marks
+    FROM [kathu_college_stg].[bronze].[grade_12_students_marks]
+    WHERE grade IN ('12A', '12B');
+END;
+GO
+
+-- Check the number of students loaded into each table.
+SELECT 'Grade 10' AS grade_group, COUNT(*) AS student_count
+FROM silver.grade_10_students_marks
+
+UNION ALL
+
+SELECT 'Grade 11', COUNT(*)
+FROM silver.grade_11_students_marks
+
+UNION ALL
+
+SELECT 'Grade 12', COUNT(*)
+FROM silver.grade_12_students_marks;
+GO
