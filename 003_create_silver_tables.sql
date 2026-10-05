@@ -22,7 +22,7 @@ BEGIN
         agricultural_science_mark,
         total_mark,
         average_mark
-    INTO silver.grade_10_students_marks
+    INTO [kathu_college_dwh].[silver].[grade_10_students_marks]
     FROM [kathu_college_stg].[bronze].[grade_10_students_marks]
     WHERE grade IN ('10A', '10B');
 END;
@@ -49,7 +49,7 @@ BEGIN
         agricultural_science_mark,
         total_mark,
         average_mark
-    INTO silver.grade_11_students_marks
+    INTO [kathu_college_dwh].[silver].[grade_11_students_marks]
     FROM [kathu_college_stg].[bronze].[grade_11_students_marks]
     WHERE grade IN ('11A', '11B');
 END;
@@ -76,7 +76,7 @@ BEGIN
         agricultural_science_mark,
         total_mark,
         average_mark
-    INTO silver.grade_12_students_marks
+    INTO [kathu_college_dwh].[silver].[grade_12_students_marks]
     FROM [kathu_college_stg].[bronze].[grade_12_students_marks]
     WHERE grade IN ('12A', '12B');
 END;
@@ -84,15 +84,15 @@ GO
 
 -- Check the number of students loaded into each table.
 SELECT 'Grade 10' AS grade_group, COUNT(*) AS student_count
-FROM silver.grade_10_students_marks
+FROM [kathu_college_dwh].[silver].[grade_10_students_marks]
 
 UNION ALL
 
 SELECT 'Grade 11', COUNT(*)
-FROM silver.grade_11_students_marks
+FROM [kathu_college_dwh].[silver].[grade_11_students_marks]
 
 UNION ALL
 
 SELECT 'Grade 12', COUNT(*)
-FROM silver.grade_12_students_marks;
+FROM [kathu_college_dwh].[silver].[grade_12_students_marks];
 GO
