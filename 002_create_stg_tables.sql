@@ -5,7 +5,7 @@ GO
 IF NOT EXISTS (
     SELECT 1
     FROM sys.tables
-    WHERE name = N'grade_10_students_marks'
+    WHERE name = N'prelim_science_students_marks_g10'
       AND schema_id = SCHEMA_ID(N'bronze')
 )
 BEGIN
@@ -32,7 +32,7 @@ GO
 IF NOT EXISTS (
     SELECT 1
     FROM sys.tables
-    WHERE name = N'grade_11_students_marks'
+    WHERE name = N'prelim_science_students_marks_g11'
       AND schema_id = SCHEMA_ID(N'bronze')
 )
 BEGIN
@@ -59,7 +59,7 @@ GO
 IF NOT EXISTS (
     SELECT 1
     FROM sys.tables
-    WHERE name = N'grade_12_students_marks'
+    WHERE name = N'prelim_science_students_marks_g12'
       AND schema_id = SCHEMA_ID(N'bronze')
 )
 BEGIN
